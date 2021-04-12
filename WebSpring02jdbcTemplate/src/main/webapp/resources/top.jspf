@@ -26,5 +26,5 @@
 		${logName }<a href="/jdbc/logout">로그아웃</a>
 	</c:if>
 	<a href="/jdbc/boardList">게시판</a>
-	자료실
+	<a href="/jdbc/dataList">자료실</a>
 </h2>
