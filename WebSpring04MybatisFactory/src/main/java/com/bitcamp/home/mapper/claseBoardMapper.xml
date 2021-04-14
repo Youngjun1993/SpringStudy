@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.home.claseBoard.ClaseBoardDAOImpl">
+	<insert id="claseInsert" parameterType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		insert into claseBoard(no, subject, content, ip, userid, ref) 
+		values(boardsq.nextval, #{subject}, #{content}, #{ip}, #{userid}, boardsq.currval)	
+	</insert>
+</mapper>

@@ -17,4 +17,7 @@ public interface DataDAOImpl {
 	
 	//레코드 수정
 	public int dataUpdate(DataVO vo);
+	
+	//레코드 삭제
+	public int dataDelete(int no, String userid);
 }

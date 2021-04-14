@@ -302,7 +302,37 @@ public class DataController {
 			mav.setViewName("redirect:dataEdit");
 			
 		}
-		return mav;
+		return mav;	
+	}
+	@RequestMapping("/dataDel")
+	public ModelAndView dataDelete(int no, HttpSession session) {
+		String userid = (String)session.getAttribute("logId");
 		
+		DataDAO dao = new DataDAO();
+		ModelAndView mav = new ModelAndView();
+		
+		//데이터베이스의 파일명을 가져오기
+		DataVO dbFilename = dao.getSelectFilename(no);
+		
+		//레코드 삭제
+		int result = dao.dataDelete(no, userid+"2");
+		
+		String path = session.getServletContext().getRealPath("/upload");
+		if(result>0) {//삭제
+			//파일을 지우기
+			File f = new File(path, dbFilename.getFilename1());
+			f.delete();
+			if(dbFilename.getFilename2() != null && dbFilename.getFilename2().equals("")) {
+				File ff = new File(path, dbFilename.getFilename2());
+				ff.delete();
+			}
+			//리스트로 이동
+			mav.setViewName("redirect:dataList");
+		}else {//삭제실패
+			//글내용보기
+			mav.addObject("no", no);
+			mav.setViewName("redirect:dataView");
+		}
+		return mav;
 	}
 }

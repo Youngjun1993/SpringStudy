@@ -54,5 +54,10 @@ public class DataDAO implements DataDAOImpl {
 		String sql = "update data set title=?, content=?, filename1=?, filename2=? where no=? and userid=?";
 		return template.update(sql, vo.getTitle(), vo.getContent(), vo.getFilename1(), vo.getFilename2(), vo.getNo(), vo.getUserid());
 	}
+	@Override
+	public int dataDelete(int no, String userid) {
+		String sql = "delete from data where no=? and userid=?";
+		return template.update(sql, no, userid);
+	}
 	
 }

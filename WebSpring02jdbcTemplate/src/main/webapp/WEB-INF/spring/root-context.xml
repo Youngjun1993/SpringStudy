@@ -5,7 +5,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 
-		파일업로드를 하기 위해서는 MultipartResolver객체가 필요하기...
+		파일업로드를 하기 위해서는 MultipartResolver객체가 필요하다 따라서
 		xml에 객체를 생성해 놓으면 DispacherServlet이 참조하여 파일업로드를 구현한다.
 	 -->
 	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : 추상클래스의 경로를 적어준다. -->
+<mapper namespace="com.bitcamp.home.member.MemberDAOImpl">
+	<!-- MemberDAOImpl의 메소드명을 적어주면 select라는 태그와 매핑해줄수있다. -->
+	<!-- VO인경우에는 resultType을 해주는게 좀더 명확하다.(int의 경우는 안해줘도 무방) -->
+	<select id="loginCheck" resultType="com.bitcamp.home.member.MemberVO">
+		select userid, username from registor where userid=#{userid} and userpwd=#{userpwd}
+	</select>
+</mapper>
