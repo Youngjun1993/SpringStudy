@@ -34,7 +34,7 @@ public class BoardController {
 	@RequestMapping(value="/boardWriteOk", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView boardWriteOk(BoardVO vo, HttpSession session, HttpServletRequest req) {
 		vo.setIp(req.getRemoteAddr());
-		vo.setUserid((String)session.getAttribute("logId"));
+		vo.setUserid((String)session.getAttribute("logVO.userid"));
 		
 		BoardDAOImpl dao = sqlSession.getMapper(BoardDAOImpl.class);
 		int cnt = dao.boardInsert(vo);

@@ -70,7 +70,7 @@
 						$("#content").val("");
 					}, error:function(e){
 						if(e.status==400){
-							location.href=<%=request.getContextPath()%>+"/loginForm";
+							location.href="<%=request.getContextPath()%>/loginForm";
 						}
 						console.log(e.responseText);
 					}
@@ -94,7 +94,7 @@
 					replyList();
 				}, error:function(e){
 					if(e.status==400){
-						location.href=<%=request.getContextPath()%>+"/loginForm";
+						location.href="<%=request.getContextPath()%>/loginForm";
 					}
 					console.log(e.responseText);
 				}
@@ -117,7 +117,7 @@
 						replyList();
 					}, error:function(e){
 						if(e.status==400){
-							location.href=<%=request.getContextPath()%>+"/loginForm";
+							location.href="<%=request.getContextPath()%>/loginForm";
 						}
 						console.log("댓글삭제 실패" + e.responseText);
 					}

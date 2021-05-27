@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.myapp.dao.BoardDAO">
+	<select id="boardAllRecord" resultType="com.bitcamp.myapp.vo.BoardVO">
+		select no, subject, userid, hit, to_char(writedate, 'MM-DD HH:MI') as writedate from board order by no desc
+	</select>
+	<insert id="boardInsert" parameterType="com.bitcamp.myapp.vo.BoardVO">
+		insert into board(no, subject, content, userid, ip) values(boardsq.nextval, #{subject}, #{content}, #{userid}, #{ip})
+	</insert>
+	<select id="boardSelect" resultType="com.bitcamp.myapp.vo.BoardVO">
+		select no, userid, subject, content, hit, writedate from board where no=#{param1}
+	</select>
+	<update id="boardUpdate" parameterType="com.bitcamp.myapp.vo.BoardVO">
+		update board set subject=#{subject}, content=#{content} where no=#{no} and userid=#{userid}
+	</update>
+	<delete id="boardDelete">
+		delete from board where no=#{param1} and userid=#{param2}
+	</delete>
+</mapper>

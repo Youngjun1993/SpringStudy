@@ -27,12 +27,24 @@
 			<li>글쓴이</li>
 			<li>등록일</li>
 			<li>조회수</li>
-			
-				<li>번호</li>
-				<li class="wordcut"><a href="">제목</a></li>
-				<li>글쓴이</li>
-				<li>등록일</li>
-				<li>조회수</li>
+			<c:set var="recordNum" value="${totalRecord }" />
+			<c:forEach var="dto" items="${list }">
+				<li>${dto.no }(${recordNum })</li>
+				<li class="wordcut">
+					<c:forEach var="i" begin="1" end="${dto.step }">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					<c:if test="${dto.step>0 }">
+						⤷
+					</c:if>
+					<a href="claseView?no=${dto.no }">${dto.subject }</a>
+				</li>
+				
+				<li>${dto.userid }</li>
+				<li>${dto.writedate }</li>
+				<li>${dto.hit }</li>
+				<c:set var="recordNum" value="${recordNum-1 }"/>
+			</c:forEach>
 		</ul>
 	</div>
 </body>

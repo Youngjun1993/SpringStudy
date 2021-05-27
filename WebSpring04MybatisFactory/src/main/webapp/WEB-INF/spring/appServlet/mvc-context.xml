@@ -25,6 +25,11 @@
 			<mvc:mapping path="/transactionForm"/>
 			<mvc:mapping path="/claseWrite"/>
 			<mvc:mapping path="/claseWriteOk"/>
+			<mvc:mapping path="/claseWriteForm"/>
+			<mvc:mapping path="/claseWriteFormOk"/>
+			<mvc:mapping path="/claseEdit"/>
+			<mvc:mapping path="/claseEditOk"/>
+			<mvc:mapping path="/claseDel"/>
 			<bean class="com.bitcamp.home.interceptor.LoginInterceptor"></bean>	 	
 	 	</mvc:interceptor>
 	 </mvc:interceptors>

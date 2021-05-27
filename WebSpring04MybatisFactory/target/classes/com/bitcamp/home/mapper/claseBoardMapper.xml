@@ -7,4 +7,43 @@
 		insert into claseBoard(no, subject, content, ip, userid, ref) 
 		values(boardsq.nextval, #{subject}, #{content}, #{ip}, #{userid}, boardsq.currval)	
 	</insert>
+	<select id="claseAllRecord" resultType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		select no, subject, userid, hit, to_char(writedate, 'MM-DD HH:MI') writedate, step
+		from claseBoard order by ref desc, lvl asc
+	</select>
+	<select id="claseSelect" resultType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		select no, subject, userid, content, hit, writedate 
+		from claseBoard where no=#{param1}
+	</select>
+	<update id="hitCount">
+		update claseBoard set hit=hit+1 where no=#{param1}
+	</update>
+	<select id="oriInfor" resultType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		select no, ref, step, lvl from claseBoard where no=#{param1}
+	</select>
+	<update id="lvlCount" parameterType="com.bitcamp.home.claseBoard.ClaseBoardDTO">		
+		update claseBoard set lvl=lvl+1 where ref=#{ref} and lvl>#{lvl}
+	</update>
+	<insert id="claseDataInsert" parameterType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		insert into claseBoard(no, subject, content, userid, ip, ref, step, lvl) 
+		values(boardsq.nextval, #{subject}, #{content}, #{userid}, #{ip}, #{ref}, #{step}, #{lvl})
+	</insert>
+	<select id="getTotalRecord" resultType="int">
+		select count(no) cnt from claseboard
+	</select>
+	<update id="claseUpdate" parameterType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		update claseBoard set subject=#{subject}, content=#{content} where no=#{no} and userid=#{userid}
+	</update>
+	<select id="getStep" resultType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		select step, userid from claseBoard where no=#{param1}
+	</select>
+	<delete id="claseDelete">
+		delete from claseBoard where ref=#{param1}
+	</delete>
+	<update id="claseDeleteUpdate">
+		update claseBoard set subject='삭제된글입니다!!', content='삭제된글입니다!!' where no=#{param1} and userid=#{param2}
+	</update>
+	<select id="getNumTitle" resultType="com.bitcamp.home.claseBoard.ClaseBoardDTO">
+		select * from (select no, subject, lead(no,1,0) over (order by no desc) next_no, lead(subject,1,'null') over (order by no desc) next_subject, lag(no,1,0) over (order by no desc) pre_no, lag(subject,1,'null') over (order by no desc) pre_subject, step from claseboard where step=0 order by ref desc, lvl asc) where no=#{param1}
+	</select>
 </mapper>
